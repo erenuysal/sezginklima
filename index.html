@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sezgin Klima | Sakura Klima Ürünleri ve Teknik Hizmetler</title>
+<meta name="description" content="Sezgin Klima için hazırlanan tek sayfalık premium vitrin sitesi. Sakura Klima ürün kategorileri, mobil klima, ısı pompası, bakır boru ve teknik hizmetler.">
+<style>
+:root{
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#1b1f23;
+  --muted:#69707a;
+  --line:#e8ebef;
+  --primary:#d8232a;
+  --accent:#111827;
+  --soft:#fef2f2;
+  --shadow:0 18px 45px rgba(17,24,39,.08);
+  --shadow-hover:0 24px 65px rgba(17,24,39,.14);
+  --radius:22px;
+  --max:1320px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at top right, rgba(216,35,42,.08), transparent 22%),linear-gradient(180deg,#fafbfc 0%,#f4f6f8 100%);
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.container{width:min(var(--max),calc(100% - 28px));margin:auto}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:14px;min-width:0;flex-wrap:wrap}
+.brand-logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--primary),#ff6368);display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;box-shadow:var(--shadow)}
+.brand-text strong{display:block;font-size:16px}
+.brand-text span{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.brand img{height:42px;width:auto;object-fit:contain}
+.nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.nav a.link{padding:10px 14px;border-radius:12px;color:var(--muted);font-size:14px;transition:.25s}
+.nav a.link:hover{background:#fff;color:var(--text)}
+.nav .call-btn{padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--primary),#ff5b61);color:#fff;font-weight:700;box-shadow:0 12px 28px rgba(216,35,42,.24);transition:.25s}
+.nav .call-btn:hover{transform:translateY(-2px)}
+.hero{position:relative;min-height:780px;background:url('Assets/Dükkan foto.jpeg') center/cover no-repeat;padding:110px 0 260px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,15,26,.84) 0%,rgba(10,15,26,.64) 42%,rgba(10,15,26,.48) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,.1) 0%,rgba(8,12,20,.48) 100%)}
+.hero-inner{position:relative;z-index:2}
+.hero-copy{max-width:860px;color:#fff;background:linear-gradient(135deg,rgba(12,18,32,.84),rgba(12,18,32,.64));border:1px solid rgba(255,255,255,.12);box-shadow:0 28px 90px rgba(0,0,0,.38);backdrop-filter:blur(10px);padding:42px;border-radius:32px}
+.hero-copy::before{content:"";position:absolute}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.hero h1{font-size:clamp(42px,6vw,82px);line-height:.98;margin:18px 0 20px;letter-spacing:-.05em;max-width:820px}
+.hero p{max-width:760px;color:rgba(255,255,255,.88);line-height:1.8;font-size:17px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:18px;font-weight:700;transition:.25s}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#ff5b61);color:#fff;box-shadow:0 14px 28px rgba(216,35,42,.24)}
+.btn-primary:hover,.btn-white:hover,.btn-outline:hover{transform:translateY(-3px)}
+.btn-white{background:#fff;color:var(--accent)}
+.btn-outline{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}
+.hero-services{position:relative;z-index:3;margin-top:-145px}
+.services-hero-shell{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.65);border-radius:32px;padding:28px;box-shadow:0 22px 70px rgba(12,18,32,.16)}
+.services-hero-head{text-align:center;margin-bottom:24px}
+.services-hero-head span{display:block;color:var(--primary);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+.services-hero-head h2{font-size:clamp(30px,4vw,56px);line-height:1.05;margin-bottom:12px}
+.services-hero-head p{max-width:840px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.8}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.service-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);transition:.28s}.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.service-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.service-icon{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--primary),#ff6368);display:grid;place-items:center;color:#fff;font-weight:900}.service-mark{font-size:12px;padding:8px 10px;border-radius:999px;background:#f6f7f9;color:#6b7280;font-weight:800}
+.service-card h3{font-size:18px;margin-bottom:8px}.service-card p{font-size:14px;color:var(--muted);line-height:1.75}
+.map-shell{display:grid;grid-template-columns:.95fr 1.05fr;gap:20px;align-items:stretch}
+.map-info{background:linear-gradient(135deg,#131b27,#202937);color:#fff;border-radius:28px;padding:28px;box-shadow:var(--shadow)}
+.map-info h3{font-size:30px;margin-bottom:12px}.map-info p{line-height:1.85;color:#d4dae2}
+.map-points{display:grid;gap:12px;margin-top:20px}.map-point{padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
+.map-point small{display:block;color:#ffb8bc;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}.map-point strong{font-size:18px}
+.map-frame{background:#fff;border:1px solid var(--line);border-radius:28px;padding:10px;box-shadow:var(--shadow);min-height:470px}
+.map-frame iframe{width:100%;height:100%;min-height:450px;border:0;border-radius:20px}.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contact-card,.info-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)}.contact-card.dark{background:linear-gradient(135deg,#131b27,#202937);color:#fff;border:none}.contact-card.dark p,.contact-card.dark .contact-line span{color:#d4dae2}
+.contact-card h3,.info-card h3{font-size:28px;margin-bottom:12px}.contact-card p,.info-card p{line-height:1.85;color:var(--muted)}
+.contact-lines{display:grid;gap:12px;margin-top:18px}.contact-line{padding:16px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}.contact-line small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;color:#ffb8bc}.contact-line strong{font-size:18px}.contact-line span{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+.info-list{display:grid;gap:12px;margin-top:18px}.info-row{padding:16px;border-radius:18px;background:#fafbfc;border:1px solid var(--line)}.info-row strong{display:block;font-size:15px;margin-bottom:4px}.info-row span{color:var(--muted);font-size:14px;line-height:1.7}
+.section{padding:24px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.section-head-left span{display:block;color:var(--primary);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:700}
+.section-head-left h2{font-size:clamp(28px,4vw,42px);line-height:1.08}.section-head-left p{color:var(--muted);line-height:1.85;max-width:820px;margin-top:10px}
+.section-head a{padding:12px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--accent);font-weight:700;font-size:14px}
+.listing-shell{display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:start}
+.sidebar{position:sticky;top:90px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.sidebar h3{font-size:20px;margin-bottom:14px}.filter-group{margin-bottom:18px}
+.filter-group strong{display:block;font-size:13px;margin-bottom:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.filter-tags{display:flex;flex-wrap:wrap;gap:9px}.filter-tag{padding:10px 12px;border-radius:999px;background:#f6f7f9;border:1px solid var(--line);font-size:13px;font-weight:700;color:#4b5563}
+.filter-note{padding:14px;border-radius:16px;background:var(--soft);border:1px solid #ffd9da;color:#7a1f24;font-size:13px;line-height:1.7}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product-card{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);transition:.35s ease;animation:floatUp .7s ease both}
+.product-card:nth-child(2){animation-delay:.06s}.product-card:nth-child(3){animation-delay:.12s}.product-card:nth-child(4){animation-delay:.18s}.product-card:nth-child(5){animation-delay:.24s}.product-card:nth-child(6){animation-delay:.30s}.product-card:nth-child(7){animation-delay:.36s}.product-card:nth-child(8){animation-delay:.42s}.product-card:nth-child(9){animation-delay:.48s}.product-card:nth-child(10){animation-delay:.54s}
+.product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover)}
+.card-media{position:relative;height:220px;background:linear-gradient(135deg,#e9eef4,#fdfdfd);overflow:hidden}.card-media::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right, rgba(216,35,42,.14), transparent 34%)}
+.card-media-inner{position:absolute;inset:18px;border-radius:20px;background:linear-gradient(135deg,#ffffff,#f2f4f7);border:1px solid #edf0f3;display:flex;align-items:center;justify-content:center;padding:20px}
+.card-media-inner img{width:100%;height:100%;object-fit:contain}
+.card-badge{position:absolute;left:16px;top:16px;background:#fff;color:var(--primary);padding:9px 12px;border-radius:999px;font-size:12px;font-weight:800;box-shadow:0 8px 18px rgba(17,24,39,.08)}
+.card-fav{position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 8px 18px rgba(17,24,39,.08);font-size:18px;color:#9ca3af}
+.card-body{padding:18px}.card-title{font-size:20px;line-height:1.2;margin-bottom:8px}.card-sub{color:var(--muted);font-size:14px;line-height:1.7;min-height:48px}
+.card-price{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 14px}.card-price strong{font-size:22px;color:var(--primary)}.card-price span{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.specs{display:flex;flex-wrap:wrap;gap:8px}.spec{padding:9px 11px;border-radius:999px;background:#f6f7f9;border:1px solid var(--line);font-size:12px;font-weight:700;color:#4b5563}
+.card-actions{display:flex;gap:10px;margin-top:16px}.mini-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:14px;font-size:14px;font-weight:800;transition:.25s}.mini-btn-outline{border:1px solid var(--line);background:#fff}.mini-btn-primary{background:linear-gradient(135deg,var(--primary),#ff5b61);color:#fff}.mini-btn:hover{transform:translateY(-2px)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.service-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);transition:.28s}.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.service-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.service-icon{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--primary),#ff6368);display:grid;place-items:center;color:#fff;font-weight:900}.service-mark{font-size:12px;padding:8px 10px;border-radius:999px;background:#f6f7f9;color:#6b7280;font-weight:800}
+.service-card h3{font-size:18px;margin-bottom:8px}.service-card p{font-size:14px;color:var(--muted);line-height:1.75}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.contact-card,.info-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)}.contact-card.dark{background:linear-gradient(135deg,#131b27,#202937);color:#fff;border:none}.contact-card.dark p,.contact-card.dark .contact-line span{color:#d4dae2}
+.contact-card h3,.info-card h3{font-size:28px;margin-bottom:12px}.contact-card p,.info-card p{line-height:1.85;color:var(--muted)}
+.contact-lines{display:grid;gap:12px;margin-top:18px}.contact-line{padding:16px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}.contact-line small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;color:#ffb8bc}.contact-line strong{font-size:18px}.contact-line span{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+.info-list{display:grid;gap:12px;margin-top:18px}.info-row{padding:16px;border-radius:18px;background:#fafbfc;border:1px solid var(--line)}.info-row strong{display:block;font-size:15px;margin-bottom:4px}.info-row span{color:var(--muted);font-size:14px;line-height:1.7}
+footer{padding:30px 0 50px;color:var(--muted);font-size:14px}.footer-inner{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px}
+@keyframes floatUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:1150px){.listing-shell,.contact-wrap,.map-shell{grid-template-columns:1fr}.cards-grid{grid-template-columns:repeat(2,1fr)}.services-grid{grid-template-columns:repeat(2,1fr)}.sidebar{position:static}.hero{padding-bottom:230px}}
+@media (max-width:760px){.topbar-inner,.nav{flex-direction:column;align-items:stretch}.hero{padding:90px 0 220px;min-height:auto}.hero-copy{padding:26px}.cards-grid,.services-grid,.contact-wrap{grid-template-columns:1fr}.section{padding:18px 0}.card-media{height:200px}.hero h1{font-size:44px}.hero p{font-size:16px}.services-hero-shell{padding:20px}}
+
+/* Product section transplanted from index2 */
+#products.section{padding:60px 20px;max-width:1200px;margin:auto}
+#products.section h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#c5102f}
+#products .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+#products .card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column}
+#products .card:hover{transform:scale(1.05);box-shadow:0 8px 16px rgba(0,0,0,.2)}
+#products .card img{width:100%;height:200px;object-fit:cover}
+#products .card .content{padding:20px;flex:1}
+#products .card .content h3{margin-top:0;color:#c5102f;font-size:1.2rem}
+#products .card .content p{font-size:.9rem;margin:10px 0;line-height:1.4}
+#products .card .actions{padding:20px;display:flex;justify-content:space-between}
+#products .card .actions a{flex:1;margin:0 5px;text-align:center;font-size:.9rem;border-radius:4px;padding:10px;color:#fff;text-decoration:none}
+#products .card .actions a.whatsapp{background-color:#25d366}
+#products .card .actions a.call{background-color:#007aff}
+#products .card .actions a.detail{background-color:#c5102f}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px}
+.modal .modal-content{background:#fff;max-width:800px;width:100%;border-radius:8px;padding:30px;max-height:90vh;overflow-y:auto}
+.modal .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.modal .modal-header h3{margin:0;color:#c5102f;font-size:1.5rem}
+.modal .close{font-size:1.5rem;cursor:pointer}
+
+</style>
+
+<script>
+function showModal(id){var modal=document.getElementById(id); if(modal){modal.style.display='flex';}}
+function closeModal(id){var modal=document.getElementById(id); if(modal){modal.style.display='none';}}
+window.addEventListener('click', function(e){
+  if(e.target.classList && e.target.classList.contains('modal')){e.target.style.display='none';}
+});
+</script>
+
+</head>
+<body>
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <div class="brand-logo">SK</div>
+      <div class="brand-text">
+        <strong>Sezgin Kahraman</strong>
+        <span>Sakura Klima bölge sorumlusu / bölge satış noktası</span>
+      </div>
+      <img src="Assets/logo-sakura.png" alt="Sakura Klima Logo">
+    </div>
+    <div class="nav">
+      <a class="link" href="#urunler">Ürünler</a>
+      <a class="link" href="#hizmetler">Hizmetler</a>
+      <a class="link" href="#iletisim">İletişim</a>
+      <a class="call-btn" href="tel:+905318103979">+90 531 810 39 79</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="badge">Sakura Klima • Premium vitrin • Bölge satış noktası</div>
+      <h1>Sezgin Klima ile konforlu yaşam ve güçlü teknik destek</h1>
+      <p>
+        Sakura Klima'nın resmi ürün kategorilerindeki klimalar, mobil klima, ısı pompası ve bakır boru çözümleri tek sayfada sunuluyor. Aynı zamanda dükkânda belirtilen kombi bakım, petek temizleme, klima bakım ve beyaz eşya hizmetleri de profesyonel bir vitrin düzeniyle yer alıyor.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#urunler">Ürünleri İncele</a>
+        <a class="btn btn-white" href="https://wa.me/905318103979" target="_blank" rel="noopener">WhatsApp İletişim</a>
+        <a class="btn btn-outline" href="#hizmetler">Hizmetleri Gör</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero-services" id="hizmetler">
+  <div class="container services-hero-shell">
+    <div class="services-hero-head">
+      <span>Hizmetler</span>
+      <h2>Dükkânda belirtilen tüm işler</h2>
+      <p>Yeni halindeki zayıf bölümler yeniden tasarlandı. Şimdi hizmet alanı, eski sitedeki güçlü vitrin hissini korurken daha modern kartlar ve daha temiz bir hiyerarşi sunuyor.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Servis</div></div><h3>Kombi Bakım</h3><p>Düzenli kontrol, bakım ve performans desteği ile kombinizin daha verimli çalışmasına yardımcı olunur.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Temizlik</div></div><h3>Petek Temizleme</h3><p>Isı verimini artırmaya yardımcı temizlik işlemleri ile sistem performansı yükseltilir.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Onarım</div></div><h3>Kombi Tamir</h3><p>Arıza tespiti ve teknik müdahale desteği ile hızlı yönlendirme sağlanır.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Klima</div></div><h3>Klima Bakım & Tamir</h3><p>Sakura klimalar ve diğer sistemler için bakım ve servis yönlendirmesi sunulur.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Ev Aletleri</div></div><h3>Beyaz Eşya Tamir</h3><p>Çeşitli ev aletleri için teknik destek ve servis hizmetleri verilir.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Alım-Satım</div></div><h3>2. El Beyaz Eşya</h3><p>İkinci el beyaz eşya alım ve satış bilgilendirmesi profesyonel şekilde sunulur.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Keşif</div></div><h3>Ücretsiz Keşif</h3><p>İhtiyaca uygun çözüm belirlemek için ön değerlendirme ve keşif desteği sağlanır.</p></div>
+      <div class="service-card"><div class="service-top"><div class="service-icon">✓</div><div class="service-mark">Proje</div></div><h3>Doğalgaz Proje</h3><p>İlgili çizim ve yönlendirme süreçleri için bilgilendirme desteği verilir.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="section">
+    <h2>Ürünlerimiz</h2>
+    <div class="card-grid">
+      <!-- Arashi 9k -->
+      <div class="card">
+        <img src="Assets/klima-4.jpg" alt="Arashi 9k">
+        <div class="content">
+          <h3>Arashi Split Klima 9.000 BTU/h</h3>
+          <p>Soğutma: 8.530 BTU/h<br>Isıtma: 8.871 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 28–37 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi9')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%209000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Arashi 12k -->
+      <div class="card">
+        <img src="Assets/klima-4.jpg" alt="Arashi 12k">
+        <div class="content">
+          <h3>Arashi Split Klima 12.000 BTU/h</h3>
+          <p>Soğutma: 11.941 BTU/h<br>Isıtma: 11.941 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 28–40 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi12')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%2012000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Arashi 18k -->
+      <div class="card">
+        <img src="Assets/klima-4.jpg" alt="Arashi 18k">
+        <div class="content">
+          <h3>Arashi Split Klima 18.000 BTU/h</h3>
+          <p>Soğutma: 17.401 BTU/h<br>Isıtma: 17.401 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 30–42 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi18')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%2018000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Arashi 22k -->
+      <div class="card">
+        <img src="Assets/klima-4.jpg" alt="Arashi 22k">
+        <div class="content">
+          <h3>Arashi Split Klima 22.000 BTU/h</h3>
+          <p>Soğutma: 22.178 BTU/h<br>Isıtma: 22.178 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 32–44 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi22')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%2022000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Kaset 42k -->
+      <div class="card">
+        <img src="Assets/kaset-tipi-min.jpg" alt="Kaset 42k">
+        <div class="content">
+          <h3>4 Yön Üflemeli Kaset Klima 42.000 BTU/h</h3>
+          <p>Soğutma: 42.000 BTU/h<br>Isıtma: 48.000 BTU/h<br>Enerji sınıfı: A+/A<br>Ses seviyesi: 57 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-kaset42')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Kaset%2042000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Salon 42k -->
+      <div class="card">
+        <img src="Assets/salon-tipi-min-1.jpg" alt="Salon 42k">
+        <div class="content">
+          <h3>Salon Tipi Klima 42.000 BTU/h</h3>
+          <p>Soğutma: 42.000 BTU/h<br>Isıtma: 48.000 BTU/h<br>Enerji sınıfı: A+/A<br>Ses seviyesi: 58 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-salon42')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Salon%2042000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Salon 28k -->
+      <div class="card">
+        <img src="Assets/28000-btu.jpg" alt="Salon 28k">
+        <div class="content">
+          <h3>Salon Tipi Klima 28.000 BTU/h</h3>
+          <p>Soğutma: 28.000 BTU/h<br>Isıtma: 30.000 BTU/h<br>Enerji sınıfı: A++/4.0 A+<br>Ses seviyesi: 22–46 dB(A)</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-salon28')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Salon%2028000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Mobil Klima -->
+      <div class="card">
+        <img src="Assets/Mobil.png" alt="Mobil Klima">
+        <div class="content">
+          <h3>Mobil Klima</h3>
+          <p>Portatif klima; dış üniteye sahip olmayan, monte edilmeden kullanılabilen ve kolay taşınabilen bir klima modelidir. Hem soğutma hem ısıtma yapar.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-mobil')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Mobil%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Isı Pompası -->
+      <div class="card">
+        <img src="Assets/ısıpompası.png" alt="Isı Pompası">
+        <div class="content">
+          <h3>Isı Pompası</h3>
+          <p>Isı pompaları, ısıtma, soğutma ve sıcak su ihtiyacını tek bir cihazda toplayan enerji tasarruflu sistemlerdir.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-isipompa')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Is%C4%B1%20pompas%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+
+      <!-- Mirai Duvar Tipi Split Klima -->
+      <div class="card">
+        <img src="Assets/klimalar.png" alt="Mirai Duvar Tipi Split Klima">
+        <div class="content">
+          <h3>Mirai Duvar Tipi Split Klima</h3>
+          <p>AI destekli inverter algoritmasıyla enerji tasarrufu sağlar; akıllı hava akışı sayesinde soğutmada havayı yukarı, ısıtmada aşağı yönlendirerek rahat ve homojen iklimlendirme sunar.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-mirai')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Mirai%20split%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+
+      <!-- Ticari & Multi Split Klimalar -->
+      <div class="card">
+        <img src="Assets/kaset-tipi-min.jpg" alt="Ticari ve Multi Split Klimalar">
+        <div class="content">
+          <h3>Ticari &amp; Multi Split Klimalar</h3>
+          <p>Tek bir dış üniteye bağlı birden fazla iç ünite ile geniş ev ve iş yerlerinde bağımsız sıcaklık kontrolü ve yüksek enerji verimliliği sağlar; inverter teknolojisi sayesinde sessiz ve ekonomik çalışır.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-multisplit')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Ticari%20ve%20multi%20split%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Kauçuk İzoleli Bakır Boru -->
+      <div class="card">
+        <img src="Assets/Boru1.jpg" alt="Kauçuk İzoleli Bakır Boru">
+        <div class="content">
+          <h3>Kauçuk İzolasyonlu Bakır Boru</h3>
+          <p>Enerji verimliliği için düşük ısı iletkenliğe sahip kauçuk izolasyonlu bakır borular.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-kaucuk')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Kau%C3%A7uk%20izoleli%20bak%C4%B1r%20boru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Beyaz İzoleli Çiftli Bakır Boru -->
+      <div class="card">
+        <img src="Assets/Boru2.jpg" alt="Beyaz İzoleli Bakır Boru">
+        <div class="content">
+          <h3>Beyaz İzoleli Çiftli Bakır Boru</h3>
+          <p>%99,9 saflıkta Cu‑Dhp bakırdan üretilmiş, gelişmiş izolasyona sahip bakır borular.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-beyaz')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=Beyaz%20izoleli%20bak%C4%B1r%20boru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+      <!-- Düz Bakır Boru -->
+      <div class="card">
+        <img src="Assets/Boru3.jpg" alt="Düz Bakır Boru">
+        <div class="content">
+          <h3>Düz Bakır Boru</h3>
+          <p>Çeşitli endüstriyel uygulamalarda kullanılan yüksek kaliteli düz bakır borular.</p>
+        </div>
+        <div class="actions">
+          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-duz')">Detaya Git</a>
+          <a class="whatsapp" href="https://wa.me/905318103979?text=D%C3%BCz%20bak%C4%B1r%20boru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
+          <a class="call" href="tel:+905318103979">Ara</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="section" id="konum">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-head-left">
+        <span>Konum</span>
+        <h2>Mağaza konumu ve yol tarifi</h2>
+        <p>Eski hizmetler bölümünün yerine Google Maps alanı yerleştirildi. Vergi levhasındaki tam adres kullanılarak mağaza konumu doğrudan harita üzerinde gösterilir.</p>
+      </div>
+    </div>
+    <div class="map-shell">
+      <div class="map-info">
+        <h3>Sezgin Klima mağazası</h3>
+        <p>Arnavutköy'deki mağaza noktasına yol tarifi almak, çevredeki konumu görmek ve müşterilere güven veren fiziksel adres bilgisini öne çıkarmak için bu harita alanı eklendi.</p>
+        <div class="map-points">
+          <div class="map-point"><small>Adres</small><strong>Hastane Mah. Nusret Arman Sk. No: 9/A, Arnavutköy / İstanbul</strong></div>
+          <div class="map-point"><small>Yetkili</small><strong>Sezgin Kahraman</strong></div>
+          <div class="map-point"><small>Telefon</small><strong>+90 531 810 39 79</strong></div>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hastane%20Mah.%20Nusret%20Arman%20Sk.%20No:%209%2FA%20Arnavutkoy%20Istanbul&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="iletisim">
+  <div class="container contact-wrap">
+    <div class="contact-card dark">
+      <h3>Doğrudan iletişime geçin</h3>
+      <p>
+        Uygun Sakura ürünü, teknik hizmet kapsamı, keşif ve fiyat bilgisi için en hızlı yol telefon ya da WhatsApp üzerinden ulaşmaktır.
+      </p>
+      <div class="contact-lines">
+        <div class="contact-line"><small>Yetkili</small><strong>Sezgin Kahraman</strong><span>Sakura Klima bölge sorumlusu / satış noktası</span></div>
+        <div class="contact-line"><small>Telefon</small><strong><a href="tel:+905318103979">+90 531 810 39 79</a></strong><span>Hızlı arama için dokunun</span></div>
+        <div class="contact-line"><small>WhatsApp</small><strong><a href="https://wa.me/905318103979" target="_blank" rel="noopener">Mesaj Gönder</a></strong><span>Anında iletişim kurabilirsiniz</span></div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <h3>Hazır kullanım notu</h3>
+      <p>
+        Bu tasarım tek sayfalık HTML olarak hazırlanmıştır. Görselleri Assets klasöründen çeker. logo-sakura.png dosyası üst menüde kullanılır.
+      </p>
+      <div class="info-list">
+        <div class="info-row"><strong>Görsel Yapısı</strong><span>Mağaza ve ürün görselleri Assets klasöründen okunur.</span></div>
+        <div class="info-row"><strong>Dosya Adı</strong><span>Kodu index.html olarak kaydedip doğrudan açabilirsin.</span></div>
+        <div class="info-row"><strong>Stil</strong><span>Mobil uyumlu, animasyonlu, ürün kartlı ve premium vitrin düzeni.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ürün detay modalları -->
+  <div id="modal-arashi9" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Arashi Split Klima 9.000 BTU/h</h3><span class="close" onclick="closeModal('modal-arashi9')">&times;</span></div>
+      <p>Arashi serisinin 9.000 BTU/h modeli özellikle küçük ve orta büyüklükteki alanlar için uygundur. 8.530 BTU/h soğutma ve 8.871 BTU/h ısıtma kapasitesiyle A++ soğutma ve A+ ısıtma enerji sınıfında çalışır; iç ünite ses seviyesi 28–37 dB(A) aralığındadır. <br><br>
+      Gelişmiş inverter teknolojisi kompresör hızını ihtiyaca göre ayarlayarak enerji tüketimini düşürür ve uzun süreli kullanımda tasarruf sağlar. Sessiz çalışma modları konforunuzu bozmadan serinlik/ısıtma sunar ve otomatik hava salınımı odanın her köşesine eşit hava dağılımı sağlar. Uzaktan kumanda üzerinden soğutma, ısıtma, nem alma ve fan modları kolayca kontrol edilebilir; uyku modu, zamanlayıcı, turbo modu ve otomatik yeniden başlatma gibi fonksiyonlar kullanım rahatlığı sunar.</p>
+    </div>
+  </div>
+  <div id="modal-arashi12" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Arashi Split Klima 12.000 BTU/h</h3><span class="close" onclick="closeModal('modal-arashi12')">&times;</span></div>
+      <p>Arashi serisinin 12.000 BTU/h modeli hem soğutmada hem ısıtmada 11.941 BTU/h kapasite sunar ve A++/A+ enerji verimliliğiyle çalışır; iç ünite ses seviyesi 28–40 dB(A) aralığındadır. <br><br>
+      Gelişmiş inverter teknolojisi kompresör hızını ihtiyaca göre ayarlayarak enerji tüketimini minimuma indirir, geleneksel on/off klimalara göre önemli ölçüde tasarruf sağlar. Sessiz çalışma modları ve etkin hava dağılımı sayesinde ortamı homojen bir şekilde iklimlendirir. Geniş LCD ekranlı uzaktan kumanda ile soğutma, ısıtma, nem alma ve fan modları kolayca kontrol edilebilir; uyku modu, zamanlayıcı, turbo mod, otomatik yeniden başlatma ve “I Feel” fonksiyonu kullanıcı konforunu artırır.</p>
+    </div>
+  </div>
+  <div id="modal-arashi18" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Arashi Split Klima 18.000 BTU/h</h3><span class="close" onclick="closeModal('modal-arashi18')">&times;</span></div>
+      <p>18.000 BTU/h Arashi modeli 17.401 BTU/h soğutma ve ısıtma kapasitesiyle geniş alanlarda yüksek performans sağlar; A++/A+ enerji verimliliği ve 30–42 dB(A) ses seviyesi sunar. <br><br>
+      İleri inverter teknolojisi sayesinde kompresör hızı ihtiyaç duyulan kapasiteye göre ayarlanır ve enerji verimliliği artırılır; bu da elektrik tüketimini düşürür ve çevreye katkı sağlar. Optimize edilmiş fan ve sessiz çalışma modları konforu en üst düzeye çıkarır; otomatik hava salınımı büyük alanlarda bile eşit hava dağılımı sağlar. Uzaktan kumanda ile tüm modlara erişebilir, uyku modu, zamanlayıcı, turbo mod, otomatik yeniden başlatma ve nem alma gibi fonksiyonları kullanarak ihtiyaçlarınıza göre özelleştirebilirsiniz.</p>
+    </div>
+  </div>
+  <div id="modal-arashi22" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Arashi Split Klima 22.000 BTU/h</h3><span class="close" onclick="closeModal('modal-arashi22')">&times;</span></div>
+      <p>Arashi serisinin en yüksek kapasiteli modelidir. 22.178 BTU/h soğutma ve ısıtma kapasitesine sahip olup A++ soğutma ve A+ ısıtma sınıfında enerji verimliliği sunar; ses seviyesi 32–44 dB(A) aralığındadır. <br><br>
+      Gelişmiş inverter teknolojisi kompresör hızını ihtiyaca göre sürekli ayarlayarak enerji tasarrufu sağlar ve uzun ömürlü kullanım imkânı verir. Sessiz çalışma özellikleri, etkin hava dağılımı ve kullanıcı dostu uzaktan kumanda ile yüksek kapasiteyi konforla birleştirir. Çeşitli çalışma modları (soğutma, ısıtma, nem alma, fan), uyku ve turbo modları, programlanabilir zamanlayıcı, otomatik yeniden başlatma ve ‘I Feel’ fonksiyonu ile kişiselleştirilmiş iklimlendirme sunar.</p>
+    </div>
+  </div>
+  <div id="modal-kaset42" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>4 Yön Üflemeli Kaset Tipi Klima 42.000 BTU/h</h3><span class="close" onclick="closeModal('modal-kaset42')">&times;</span></div>
+      <p>42.000 BTU/h soğutma ve 48.000 BTU/h ısıtma kapasitesi sunan kaset tip model, geniş alanların iklimlendirilmesi için idealdir. A+/A enerji sınıfı ve 57 dB(A) ses seviyesi ile verimli ve sessiz bir performans sağlar.</p>
+    </div>
+  </div>
+  <div id="modal-salon42" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Salon Tipi Klima 42.000 BTU/h</h3><span class="close" onclick="closeModal('modal-salon42')">&times;</span></div>
+      <p>Salon tipi 42.000 BTU/h modeli, 48.000 BTU/h ısıtma kapasitesiyle birlikte geniş salonları hızla iklimlendirir. A+ soğutma ve A ısıtma enerji sınıfına sahiptir; ses seviyesi 58 dB(A) olarak belirtilmiştir.</p>
+    </div>
+  </div>
+  <div id="modal-salon28" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Salon Tipi Klima 28.000 BTU/h</h3><span class="close" onclick="closeModal('modal-salon28')">&times;</span></div>
+      <p>28.000 BTU/h soğutma ve 30.000 BTU/h ısıtma kapasitesi ile orta büyüklükteki alanlar için uygun olan bu model A++ soğutma ve 4.0/A+ ısıtma enerji sınıfına sahiptir. Ses seviyesi 22–46 dB(A) aralığındadır.</p>
+    </div>
+  </div>
+  <div id="modal-mobil" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Mobil Klima</h3><span class="close" onclick="closeModal('modal-mobil')">&times;</span></div>
+      <p>Portatif klimalar, duvar tipi klimaların aksine dış üniteye sahip olmayan ve monte edilmeye gerek duymadan kullanılabilen cihazlardır. Küçük boyutları sayesinde farklı odalar veya yazlık gibi mekânlar arasında kolayca taşınabilir. Hem soğutma hem ısıtma yaparak yıl boyunca kullanılabilir ve genellikle 9.000–12.000 BTU aralığında olduğu için enerji tüketimi düşüktür. Kullanım alanını değiştirebilme, düşük enerji tüketimi ve uygun fiyat gibi avantajları vardır.</p>
+    </div>
+  </div>
+  <div id="modal-isipompa" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Isı Pompası</h3><span class="close" onclick="closeModal('modal-isipompa')">&times;</span></div>
+      <p>Isı pompaları, ısıtma, soğutma ve sıcak su ihtiyacını tek bir cihazda toplayan çevreci sistemlerdir. Fosil yakıtlı ısıtıcılar gibi kimyasal reaksiyonla ısı üretmek yerine çevreden alınan ısıyı transfer ederek çalışırlar. Enerjilerinin yaklaşık %75’ini havadan, sudan veya topraktan alıp yalnızca %25’ini elektrikle sağlayarak yüksek enerji tasarrufu sunarlar. Bu sayede her mevsimde verimli çalışır ve zehirli gaz salınımı yapmadan konfor sağlar.</p>
+    </div>
+  </div>
+  <div id="modal-boru-kaucuk" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Kauçuk İzolasyonlu Bakır Boru</h3><span class="close" onclick="closeModal('modal-boru-kaucuk')">&times;</span></div>
+      <p>Bu bakır borular, düşük ısı iletkenlik katsayısı sayesinde maksimum enerji tasarrufu sağlayan yüksek performanslı bir izolasyon sunar. EN 13501-1 B‑s2 d0 yangın güvenliği standardına uygun üretilen borular yangın anında zehirli gaz ve duman çıkarmayacak şekilde tasarlanmıştır. Zararlı kimyasallar içermez; split klima ve VRF sistemlerinin yanı sıra gıda sanayi ve metro projeleri gibi birçok uygulamada kullanılabilir.</p>
+    </div>
+  </div>
+  <div id="modal-boru-beyaz" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Beyaz İzoleli Çiftli Bakır Boru</h3><span class="close" onclick="closeModal('modal-boru-beyaz')">&times;</span></div>
+      <p>%99,9 saflıktaki Cu‑Dhp bakırdan üretilmiş bu borular korozyona karşı yüksek dayanıklılık ve uzun ömürlülük sunar. Genişletilmiş polietilen izolasyon ve dış yüzeydeki LDPE folyo sayesinde ısı kayıplarını minimize eder; yüksek yangın güvenlik standartlarını karşılar. HCFC içermeyen çevre dostu yapısı ve UV/kimyasal direnç özellikleri ile farklı iklimlendirme uygulamalarında güvenle kullanılabilir.</p>
+    </div>
+  </div>
+  <div id="modal-boru-duz" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Düz Bakır Boru</h3><span class="close" onclick="closeModal('modal-boru-duz')">&times;</span></div>
+      <p>Çeşitli endüstriyel ve ticari uygulamalarda kullanılan SAKURA düz bakır borular, %99,9 saf bakırdan üretilmiştir. Esnek yapısı sayesinde montajı kolaydır ve işçilik maliyetlerini düşürür. EN 12735-1 standardına uygun olarak üretilen bu borular yüksek basınç ve sıcaklıklara dayanıklıdır; klima ve soğutma sistemleri, elektrik tesisatları ve sıhhi tesisatlar gibi birçok alanda kullanılabilir.</p>
+    </div>
+  </div>
+
+  <!-- Mirai Duvar Tipi Split Klima Modal -->
+  <div id="modal-mirai" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Mirai Duvar Tipi Split Klima</h3><span class="close" onclick="closeModal('modal-mirai')">&times;</span></div>
+      <p>Mirai serisi, yapay zeka destekli inverter algoritmasıyla klasik on/off klimalara göre çok daha verimli çalışır. Kompresör hızını ihtiyaca göre sürekli ayarlayarak enerji tüketimini minimuma indirir; bu sayede A++ soğutma ve A+ ısıtma sınıflarına kadar ulaşan verimlilik sağlar. <br><br>
+      <strong>Konfor ve teknoloji:</strong> Sessiz çalışma modları sayesinde fısıltı seviyesinde gürültü ile uyku konforu sunar. Otomatik dikey hava salınımı ve ayarlanabilir yatay kanatçıklar, havayı soğutmada yukarı, ısıtmada aşağı yönlendirerek odanın her köşesine dengeli dağıtır. Geniş LCD ekranlı uzaktan kumanda üzerinden soğutma, ısıtma, nem alma ve fan modları kolayca kontrol edilebilir. <br><br>
+      <strong>Akıllı işlevler:</strong> Uyku modu gece boyunca sıcaklığı ve fan hızını otomatik ayarlayarak konforlu bir uyku ortamı sunar; programlanabilir zamanlayıcı cihazın istediğiniz saatte açılıp kapanmasını sağlar. Turbo modu mekanı hızlıca soğutmak veya ısıtmak için maksimum güçte çalışır. Otomatik yeniden başlatma elektrik kesintisi sonrasında önceki ayarlarla çalışmaya devam eder, ‘I Feel’ fonksiyonu ise sıcaklığı kumandanın bulunduğu noktadan ölçerek size daha yakın bir konfor sağlar. Nem alma modu fazla nemi alır, çıkarılabilir filtreleri sayesinde hava kalitesini artırır.  </p>
+    </div>
+  </div>
+
+  <!-- Ticari & Multi Split Klimalar Modal -->
+  <div id="modal-multisplit" class="modal">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Ticari &amp; Multi Split Klimalar</h3><span class="close" onclick="closeModal('modal-multisplit')">&times;</span></div>
+      <p>Multi split klima sistemleri bir dış üniteye bağlı birden fazla iç ünitenin aynı anda çalışmasını sağlar. Bu sayede geniş evler, ofisler veya çok odalı yapılar için ideal bir çözüm sunar. Her odada farklı sıcaklık ayarlamaları yapılabilir; salon serinletilirken yatak odası daha ılık tutulabilir ve dış ünitenin tek olması bina cephesinde karmaşa yaratmaz. <br><br>
+      <strong>Enerji tasarrufu ve konfor:</strong> Multi split sistemler tek tek klima satın almaya kıyasla daha ekonomik bir çözüm sunar ve inverter teknolojisi ile birleştirildiğinde enerji verimliliğini en üst seviyeye çıkarır. Sessiz çalışan iç üniteleri sayesinde yatak odaları ve çalışma alanlarında yüksek konfor sağlar. Bu sistemler, birden fazla odada aynı anda soğutma veya ısıtma yaparken estetik ve verimli bir iklimlendirme çözümü sunar.</p>
+    </div>
+  </div>
+
+  
+<footer>
+  <div class="container footer-inner">
+    <div>© Sezgin Klima • Sakura ürün vitrin sitesi</div>
+    <div><a href="tel:+905318103979">+90 531 810 39 79</a></div>
+  </div>
+</footer>
+</body>
+</html>
