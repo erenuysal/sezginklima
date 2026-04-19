@@ -132,13 +132,84 @@ footer{padding:30px 0 50px;color:var(--muted);font-size:14px}.footer-inner{displ
 .modal .modal-header h3{margin:0;color:#c5102f;font-size:1.5rem}
 .modal .close{font-size:1.5rem;cursor:pointer}
 
+
+.menu-toggle{display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:52px;height:52px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow);cursor:pointer}
+.menu-toggle span{display:block;width:22px;height:2px;background:var(--accent);border-radius:999px}
+#products .card .actions.detail-only{padding:20px}
+#products .card .actions.detail-only a{margin:0;width:100%}
+.hero-copy{position:relative}
+@media (max-width:760px){
+  .topbar{position:sticky}
+  .topbar-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 0}
+  .brand{flex-wrap:nowrap;min-width:0}
+  .brand-logo{width:44px;height:44px;border-radius:14px;flex:0 0 auto}
+  .brand img{height:34px}
+  .brand-text{min-width:0}
+  .brand-text strong{font-size:14px;line-height:1.1}
+  .brand-text span{font-size:11px;line-height:1.2}
+  .menu-toggle{display:flex}
+  .nav{display:none;grid-column:1/-1;flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:20px;padding:10px;box-shadow:var(--shadow)}
+  .nav.is-open{display:flex}
+  .nav a.link,.nav .call-btn{text-align:center}
+  .hero{padding:84px 0 170px;min-height:auto;background-position:center}
+  .hero-copy{max-width:none;padding:24px 20px;border-radius:24px}
+  .badge{font-size:10px;padding:8px 12px}
+  .hero h1{font-size:clamp(34px,10vw,54px);line-height:1.02;margin:14px 0 16px}
+  .hero p{font-size:15px;line-height:1.7}
+  .hero-actions{gap:10px}
+  .hero-actions .btn{width:100%}
+  .hero-services{margin-top:-110px}
+  .services-hero-shell{padding:20px 16px;border-radius:26px}
+  .services-hero-head h2{font-size:clamp(28px,8vw,40px)}
+  #products.section{padding:40px 14px}
+  #products .card-grid{grid-template-columns:1fr;gap:16px}
+  #products .card img{height:220px}
+  .modal{padding:14px}
+  .modal .modal-content{padding:22px 18px;border-radius:20px;max-height:85vh}
+  .modal .modal-header h3{font-size:1.15rem;line-height:1.2;max-width:88%}
+}
+
 </style>
 
 <script>
-function showModal(id){var modal=document.getElementById(id); if(modal){modal.style.display='flex';}}
-function closeModal(id){var modal=document.getElementById(id); if(modal){modal.style.display='none';}}
-window.addEventListener('click', function(e){
-  if(e.target.classList && e.target.classList.contains('modal')){e.target.style.display='none';}
+function showModal(id){
+  var modal = document.getElementById(id);
+  if(modal){
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeModal(id){
+  var modal = document.getElementById(id);
+  if(modal){
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+window.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.modal').forEach(function(modal){
+    modal.addEventListener('click', function(e){
+      if(e.target === modal){
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  var toggle = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('site-nav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 });
 </script>
 
@@ -154,8 +225,11 @@ window.addEventListener('click', function(e){
       </div>
       <img src="Assets/logo-sakura.png" alt="Sakura Klima Logo">
     </div>
-    <div class="nav">
-      <a class="link" href="#urunler">Ürünler</a>
+    <button class="menu-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav" id="site-nav">
+      <a class="link" href="#products">Ürünler</a>
       <a class="link" href="#hizmetler">Hizmetler</a>
       <a class="link" href="#iletisim">İletişim</a>
       <a class="call-btn" href="tel:+905318103979">+90 531 810 39 79</a>
@@ -172,7 +246,7 @@ window.addEventListener('click', function(e){
         Sakura Klima'nın resmi ürün kategorilerindeki klimalar, mobil klima, ısı pompası ve bakır boru çözümleri tek sayfada sunuluyor. Aynı zamanda dükkânda belirtilen kombi bakım, petek temizleme, klima bakım ve beyaz eşya hizmetleri de profesyonel bir vitrin düzeniyle yer alıyor.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#urunler">Ürünleri İncele</a>
+        <a class="btn btn-primary" href="#products">Ürünleri İncele</a>
         <a class="btn btn-white" href="https://wa.me/905318103979" target="_blank" rel="noopener">WhatsApp İletişim</a>
         <a class="btn btn-outline" href="#hizmetler">Hizmetleri Gör</a>
       </div>
@@ -210,11 +284,7 @@ window.addEventListener('click', function(e){
           <h3>Arashi Split Klima 9.000 BTU/h</h3>
           <p>Soğutma: 8.530 BTU/h<br>Isıtma: 8.871 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 28–37 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi9')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%209000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi9')">Detaya Git</a></div>
       </div>
       <!-- Arashi 12k -->
       <div class="card">
@@ -223,11 +293,7 @@ window.addEventListener('click', function(e){
           <h3>Arashi Split Klima 12.000 BTU/h</h3>
           <p>Soğutma: 11.941 BTU/h<br>Isıtma: 11.941 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 28–40 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi12')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%2012000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi12')">Detaya Git</a></div>
       </div>
       <!-- Arashi 18k -->
       <div class="card">
@@ -236,11 +302,7 @@ window.addEventListener('click', function(e){
           <h3>Arashi Split Klima 18.000 BTU/h</h3>
           <p>Soğutma: 17.401 BTU/h<br>Isıtma: 17.401 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 30–42 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi18')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%2018000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi18')">Detaya Git</a></div>
       </div>
       <!-- Arashi 22k -->
       <div class="card">
@@ -249,11 +311,7 @@ window.addEventListener('click', function(e){
           <h3>Arashi Split Klima 22.000 BTU/h</h3>
           <p>Soğutma: 22.178 BTU/h<br>Isıtma: 22.178 BTU/h<br>Enerji sınıfı: A++/A+<br>Ses seviyesi: 32–44 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi22')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Arashi%2022000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-arashi22')">Detaya Git</a></div>
       </div>
       <!-- Kaset 42k -->
       <div class="card">
@@ -262,11 +320,7 @@ window.addEventListener('click', function(e){
           <h3>4 Yön Üflemeli Kaset Klima 42.000 BTU/h</h3>
           <p>Soğutma: 42.000 BTU/h<br>Isıtma: 48.000 BTU/h<br>Enerji sınıfı: A+/A<br>Ses seviyesi: 57 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-kaset42')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Kaset%2042000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-kaset42')">Detaya Git</a></div>
       </div>
       <!-- Salon 42k -->
       <div class="card">
@@ -275,11 +329,7 @@ window.addEventListener('click', function(e){
           <h3>Salon Tipi Klima 42.000 BTU/h</h3>
           <p>Soğutma: 42.000 BTU/h<br>Isıtma: 48.000 BTU/h<br>Enerji sınıfı: A+/A<br>Ses seviyesi: 58 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-salon42')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Salon%2042000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-salon42')">Detaya Git</a></div>
       </div>
       <!-- Salon 28k -->
       <div class="card">
@@ -288,11 +338,7 @@ window.addEventListener('click', function(e){
           <h3>Salon Tipi Klima 28.000 BTU/h</h3>
           <p>Soğutma: 28.000 BTU/h<br>Isıtma: 30.000 BTU/h<br>Enerji sınıfı: A++/4.0 A+<br>Ses seviyesi: 22–46 dB(A)</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-salon28')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Salon%2028000%20BTU%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-salon28')">Detaya Git</a></div>
       </div>
       <!-- Mobil Klima -->
       <div class="card">
@@ -301,24 +347,16 @@ window.addEventListener('click', function(e){
           <h3>Mobil Klima</h3>
           <p>Portatif klima; dış üniteye sahip olmayan, monte edilmeden kullanılabilen ve kolay taşınabilen bir klima modelidir. Hem soğutma hem ısıtma yapar.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-mobil')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Mobil%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-mobil')">Detaya Git</a></div>
       </div>
       <!-- Isı Pompası -->
       <div class="card">
-        <img src="Assets/ısıpompası.png" alt="Isı Pompası">
+        <img src="Assets/isipompasi.png" alt="Isı Pompası">
         <div class="content">
           <h3>Isı Pompası</h3>
           <p>Isı pompaları, ısıtma, soğutma ve sıcak su ihtiyacını tek bir cihazda toplayan enerji tasarruflu sistemlerdir.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-isipompa')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Is%C4%B1%20pompas%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-isipompa')">Detaya Git</a></div>
       </div>
 
       <!-- Mirai Duvar Tipi Split Klima -->
@@ -328,11 +366,7 @@ window.addEventListener('click', function(e){
           <h3>Mirai Duvar Tipi Split Klima</h3>
           <p>AI destekli inverter algoritmasıyla enerji tasarrufu sağlar; akıllı hava akışı sayesinde soğutmada havayı yukarı, ısıtmada aşağı yönlendirerek rahat ve homojen iklimlendirme sunar.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-mirai')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Mirai%20split%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-mirai')">Detaya Git</a></div>
       </div>
 
       <!-- Ticari & Multi Split Klimalar -->
@@ -342,11 +376,7 @@ window.addEventListener('click', function(e){
           <h3>Ticari &amp; Multi Split Klimalar</h3>
           <p>Tek bir dış üniteye bağlı birden fazla iç ünite ile geniş ev ve iş yerlerinde bağımsız sıcaklık kontrolü ve yüksek enerji verimliliği sağlar; inverter teknolojisi sayesinde sessiz ve ekonomik çalışır.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-multisplit')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Ticari%20ve%20multi%20split%20klima%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-multisplit')">Detaya Git</a></div>
       </div>
       <!-- Kauçuk İzoleli Bakır Boru -->
       <div class="card">
@@ -355,11 +385,7 @@ window.addEventListener('click', function(e){
           <h3>Kauçuk İzolasyonlu Bakır Boru</h3>
           <p>Enerji verimliliği için düşük ısı iletkenliğe sahip kauçuk izolasyonlu bakır borular.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-kaucuk')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Kau%C3%A7uk%20izoleli%20bak%C4%B1r%20boru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-kaucuk')">Detaya Git</a></div>
       </div>
       <!-- Beyaz İzoleli Çiftli Bakır Boru -->
       <div class="card">
@@ -368,11 +394,7 @@ window.addEventListener('click', function(e){
           <h3>Beyaz İzoleli Çiftli Bakır Boru</h3>
           <p>%99,9 saflıkta Cu‑Dhp bakırdan üretilmiş, gelişmiş izolasyona sahip bakır borular.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-beyaz')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=Beyaz%20izoleli%20bak%C4%B1r%20boru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-beyaz')">Detaya Git</a></div>
       </div>
       <!-- Düz Bakır Boru -->
       <div class="card">
@@ -381,11 +403,7 @@ window.addEventListener('click', function(e){
           <h3>Düz Bakır Boru</h3>
           <p>Çeşitli endüstriyel uygulamalarda kullanılan yüksek kaliteli düz bakır borular.</p>
         </div>
-        <div class="actions">
-          <a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-duz')">Detaya Git</a>
-          <a class="whatsapp" href="https://wa.me/905318103979?text=D%C3%BCz%20bak%C4%B1r%20boru%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank">WhatsApp</a>
-          <a class="call" href="tel:+905318103979">Ara</a>
-        </div>
+        <div class="actions detail-only"><a class="detail" href="javascript:void(0);" onclick="showModal('modal-boru-duz')">Detaya Git</a></div>
       </div>
     </div>
   </section>
